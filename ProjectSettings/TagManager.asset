@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - hands
+  - tambourine-stick
+  - right-hand
+  - left-hand
   layers:
   - Default
   - TransparentFX
