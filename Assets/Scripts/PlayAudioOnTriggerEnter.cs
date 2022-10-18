@@ -26,17 +26,16 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.CompareTag(hitTag));
-        if (other.CompareTag(hitTag)) {
+        Debug.Log(other.collider.tag);
+        Debug.Log(hitTag);
+        Debug.Log(other.collider.tag == grabTag);
+        if (other.collider.tag == hitTag) {
             if (triggerValue == 0)
                 source.PlayOneShot(clipOne);
             else if (triggerValue == 1)
                 source.PlayOneShot(clipTwo);
-        }
-        else if (other.CompareTag(grabTag)) {
-            isHoldingInstrument = true;
         }
     }
 
@@ -44,6 +43,12 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     {
         if (other.CompareTag(grabTag))
             isHoldingInstrument = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(grabTag))
+            isHoldingInstrument = true;
     }
 
     void Update() {
