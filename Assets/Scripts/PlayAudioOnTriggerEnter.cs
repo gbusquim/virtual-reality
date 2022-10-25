@@ -28,9 +28,6 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     // Update is called once per frame
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.collider.tag);
-        Debug.Log(hitTag);
-        Debug.Log(other.collider.tag == grabTag);
         if (other.collider.tag == hitTag) {
             if (triggerValue == 0)
                 source.PlayOneShot(clipOne);
