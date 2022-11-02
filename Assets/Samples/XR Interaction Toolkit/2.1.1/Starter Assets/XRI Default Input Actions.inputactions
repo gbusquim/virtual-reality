@@ -148,30 +148,8 @@
                 },
                 {
                     "name": "first",
-                    "id": "abf752ec-feee-4d51-b530-f0870f48acc9",
-                    "path": "<XRController>{LeftHand}/pointerPosition",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Position",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "second",
                     "id": "6580b669-0651-401c-9779-85ef22689130",
                     "path": "<XRController>{LeftHand}/devicePosition",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Position",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "third",
-                    "id": "ae101942-9eaa-4c53-a388-cafc3fd89bdf",
-                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -578,30 +556,8 @@
                 },
                 {
                     "name": "first",
-                    "id": "9717e367-64a4-440a-9974-1e641d753eb2",
-                    "path": "<XRController>{RightHand}/pointerPosition",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Position",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "second",
                     "id": "0794a41d-29ef-48ec-a452-6b7de29b52fa",
                     "path": "<XRController>{RightHand}/devicePosition",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Position",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "third",
-                    "id": "3ef0a781-60c5-48bc-a584-f95553f8ae0a",
-                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",

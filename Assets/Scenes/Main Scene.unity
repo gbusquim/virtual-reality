@@ -7084,7 +7084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02599a29d4fb75848a6bd9c6a7abb278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipThree: {fileID: 8300000, guid: 20e80e3cc133a234caebe156b592c6e8, type: 3}
+  clipThree: {fileID: 8300000, guid: 358ba04cbd8bf5941a1466792b0f25bd, type: 3}
   button: {fileID: 1677999263}
   playImage: {fileID: 21300000, guid: cfa964ab0a043df469b90532fedbf383, type: 3}
   pauseImage: {fileID: 21300000, guid: 56f2b8fcb5b037548a4e66082b86910a, type: 3}
