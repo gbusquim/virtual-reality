@@ -20,6 +20,10 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     public string grabTag;
     private float triggerValue;
 
+    public bool useVelocity = true;
+    public float minVelocity = 0;
+    public float maxVelocity = 2;
+
     // Start is called before the first frame update
     void Start() {
       source = GetComponent<AudioSource>();
@@ -30,9 +34,9 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     {
         if (other.collider.tag == hitTag) {
             if (triggerValue == 0)
-                source.PlayOneShot(clipOne);
+                PlaySoundOnCollision(source, clipOne, other);
             else if (triggerValue == 1)
-                source.PlayOneShot(clipTwo);
+                PlaySoundOnCollision(source, clipTwo, other);
         }
     }
 
@@ -47,6 +51,20 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
         if (other.CompareTag(grabTag))
             isHoldingInstrument = true;
     }
+
+    private void PlaySoundOnCollision(AudioSource source, AudioClip clip, Collision other) 
+    {
+        VelocityEstimator estimator = other.collider.GetComponent<VelocityEstimator>();
+        if (estimator && useVelocity) {
+            float velocity = estimator.GetVelocityEstimate().magnitude;
+            float volume = Mathf.InverseLerp(minVelocity, maxVelocity, velocity);
+            Debug.Log(volume.ToString("n2"));
+            source.PlayOneShot(clip, volume);
+        }
+        else {
+            source.PlayOneShot(clip);
+        }
+    } 
 
     void Update() {
         triggerValue = pinchAnimationAction.action.ReadValue<float>();

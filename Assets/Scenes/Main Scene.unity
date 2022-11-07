@@ -1234,6 +1234,9 @@ MonoBehaviour:
     m_Reference: {fileID: 0}
   hitTag: 
   grabTag: 
+  useVelocity: 1
+  minVelocity: 0
+  maxVelocity: 2
 --- !u!114 &382866282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3315,6 +3318,9 @@ MonoBehaviour:
     m_Reference: {fileID: 0}
   hitTag: 
   grabTag: 
+  useVelocity: 1
+  minVelocity: 0
+  maxVelocity: 2
 --- !u!82 &962278915
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6710,8 +6716,9 @@ GameObject:
   - component: {fileID: 1951149667}
   - component: {fileID: 1951149672}
   - component: {fileID: 1951149671}
+  - component: {fileID: 1951149673}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Baqueta
   m_TagString: tambourine-stick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6933,6 +6940,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1951149673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951149666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8bee8a713828b4186d0f935e554ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityAverageFrames: 5
+  angularVelocityAverageFrames: 11
+  estimateOnAwake: 1
 --- !u!1 &2033559289
 GameObject:
   m_ObjectHideFlags: 0
@@ -7830,3 +7852,6 @@ MonoBehaviour:
       type: 3}
   hitTag: tambourine-stick
   grabTag: left-hand
+  useVelocity: 1
+  minVelocity: 0
+  maxVelocity: 2
