@@ -8691,7 +8691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 997285063359482981}
   m_Layer: 0
-  m_Name: tambomrimv1
+  m_Name: tamborim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9067,7 +9067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipOne: {fileID: 8300000, guid: c67e100609304c7469e65fcbf8ca7e5d, type: 3}
   clipTwo: {fileID: 8300000, guid: b88e8b3af9332824c84f50bf22569fd2, type: 3}
-  clipThree: {fileID: 8300000, guid: 20e80e3cc133a234caebe156b592c6e8, type: 3}
+  clipThree: {fileID: 8300000, guid: 1d85dbef0fecd7d4d924f4c9698d9b27, type: 3}
   pinchAnimationAction:
     m_UseReference: 1
     m_Action:
