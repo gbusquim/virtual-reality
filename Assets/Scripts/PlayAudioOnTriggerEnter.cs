@@ -16,11 +16,13 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     private bool isPressingBackPart = false;
     private bool isHoldingInstrument = false;
 
+    private float previousTriggerValue = 0;
+
     public string hitTag;
     public string grabTag;
     private float triggerValue;
 
-    public bool useVelocity = true;
+    public bool useVelocity = false;
     public float minVelocity = 0;
     public float maxVelocity = 2;
 
@@ -33,9 +35,9 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (other.collider.tag == hitTag) {
-            if (triggerValue == 0)
+            if (!isPressingBackPart)
                 PlaySoundOnCollision(source, clipOne, other);
-            else if (triggerValue == 1)
+            else
                 PlaySoundOnCollision(source, clipTwo, other);
         }
     }
@@ -58,7 +60,7 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
         if (estimator && useVelocity) {
             float velocity = estimator.GetVelocityEstimate().magnitude;
             float volume = Mathf.InverseLerp(minVelocity, maxVelocity, velocity);
-            Debug.Log(volume.ToString("n2"));
+
             source.PlayOneShot(clip, volume);
         }
         else {
@@ -68,11 +70,14 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
 
     void Update() {
         triggerValue = pinchAnimationAction.action.ReadValue<float>();
-        if (triggerValue == 1 && !isPressingBackPart && isHoldingInstrument) {
+        Debug.Log(triggerValue);
+        Debug.Log(isPressingBackPart);
+        if (triggerValue > 0.5 && !isPressingBackPart && isHoldingInstrument) {
             source.PlayOneShot(clipThree);
             isPressingBackPart = true;
+            previousTriggerValue = triggerValue; 
         }
-        else if(triggerValue == 0) {
+        else if(triggerValue < previousTriggerValue) {
             isPressingBackPart = false;
         }
     }
