@@ -11,6 +11,7 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     public AudioClip clipThree;
 
     private AudioSource source;
+    private GameObject myObject;
     public InputActionProperty pinchAnimationAction;
 
     private bool isPressingBackPart = false;
@@ -27,6 +28,7 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
       source = GetComponent<AudioSource>();
+      myObject = GameObject.Find("testeCylinder");
     }
 
     // Update is called once per frame
@@ -60,6 +62,8 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
             float volume = Mathf.InverseLerp(minVelocity, maxVelocity, velocity);
             Debug.Log(volume.ToString("n2"));
             source.PlayOneShot(clip, volume);
+            //myObject.GetComponent<Renderer>().material.color = new Color(0, 0, 0);
+            StartCoroutine(ExampleCoroutine());
         }
         else {
             source.PlayOneShot(clip);
@@ -75,5 +79,20 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
         else if(triggerValue == 0) {
             isPressingBackPart = false;
         }
+    }
+
+    IEnumerator ExampleCoroutine()
+    {
+        
+        Color previousColor = myObject.GetComponent<Renderer>().material.color;
+        //Print the time of when the function is first called.
+        if (previousColor == Color.red)
+            myObject.GetComponent<Renderer>().material.color = Color.green;
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds((float) 0.2);
+
+        //After we have waited 5 seconds print the time again.
+        myObject.GetComponent<Renderer>().material.color = previousColor;
     }
 }

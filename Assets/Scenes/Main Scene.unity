@@ -5175,7 +5175,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_RaycastTriggerInteraction: 1
   m_HitClosestOnly: 0
   m_HoverToSelect: 0
@@ -5354,10 +5354,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 64cd8e6b-3d71-43b5-bcf0-5199c537845a
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -6056,7 +6056,7 @@ MonoBehaviour:
   m_SphereCastRadius: 0.1
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
   m_RaycastTriggerInteraction: 1
   m_HitClosestOnly: 0
   m_HoverToSelect: 0
@@ -6235,10 +6235,10 @@ MonoBehaviour:
   m_DirectionalAnchorRotationAction:
     m_UseReference: 0
     m_Action:
-      m_Name: 
+      m_Name: Directional Anchor Rotation
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 
+      m_Id: 1afb86e8-30c7-4f02-8064-37d4009fbe83
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -8730,7 +8730,7 @@ GameObject:
   - component: {fileID: 7615080906130496850}
   - component: {fileID: 7615080906130496855}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: testeCylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
