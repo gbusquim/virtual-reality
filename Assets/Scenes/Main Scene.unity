@@ -12583,8 +12583,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476468792707782367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2900002, y: 0.45999992, z: -0.000000059604645}
-  m_LocalScale: {x: 1, y: 1.0000001, z: 0.99999994}
+  m_LocalPosition: {x: 2.2900002, y: 0.45999992, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6225977498084192703}
@@ -12645,7 +12645,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -876546973899608171, guid: a71c258d043192e44819b1749a128a20, type: 3}
-  - {fileID: 2100000, guid: d3179f8c7a748f6498b6bfec20b2d2ee, type: 2}
+  - {fileID: 2100000, guid: 2f919f277834ae3458649dd3aec1aa33, type: 2}
   - {fileID: -6922793697723135513, guid: a71c258d043192e44819b1749a128a20, type: 3}
   - {fileID: 2100000, guid: 069629295da2a2c42bcff32b76b1e238, type: 2}
   - {fileID: -6922793697723135513, guid: a71c258d043192e44819b1749a128a20, type: 3}
@@ -14532,7 +14532,7 @@ MonoBehaviour:
       type: 3}
   hitTag: tambourine-stick
   grabTag: left-hand
-  useVelocity: 0
+  useVelocity: 1
   minVelocity: 0
   maxVelocity: 2
 --- !u!82 &7603362407960814166
@@ -14806,7 +14806,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 87a134f1ae3eb7544a555b2072c4cd3d, type: 2}
+  - {fileID: 2100000, guid: 83d14f6cda5c9314db252fca8f666a81, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

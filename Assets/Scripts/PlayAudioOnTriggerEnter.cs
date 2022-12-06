@@ -30,6 +30,7 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
     private float timer = 0.0f;
     private float openTimer = 0.0f;
     private int levelNumber = 0;
+    private string nextHit = "closed";
 
     private IEnumerator patternCoroutine;
     private IEnumerator hitCoroutine;
@@ -45,7 +46,7 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
         triggerValue = pinchAnimationAction.action.ReadValue<float>();
         if (triggerValue == 1 && !isPressingBackPart && isHoldingInstrument) {
             source.PlayOneShot(clipThree);
-            checkCorrectHit();
+            checkCorrectHit("closed");
             isPressingBackPart = true;
         }
         else if (triggerValue == 0) {
@@ -84,9 +85,7 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
             float velocity = estimator.GetVelocityEstimate().magnitude;
             float volume = Mathf.InverseLerp(minVelocity, maxVelocity, velocity);
             source.PlayOneShot(clip, volume);
-            Debug.Log(levelNumber);
-            Debug.Log(timer - openTimer);
-            checkCorrectHit();
+            checkCorrectHit("open");
         }
         else {
             source.PlayOneShot(clip);
@@ -114,20 +113,24 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
         ChangeColorToGray();
     }
 
-    public void checkCorrectHit() {
+    public void checkCorrectHit(String currentHit) {
         if (levelNumber == 1 && (timer - openTimer < 0.2 || timer - openTimer > 0.8)) {
-            StartCoroutine(HitCoroutine());
+            if (currentHit == nextHit) {
+                StartCoroutine(HitCoroutine());
+            }
         }
     }
     
     public IEnumerator PatternCoroutine(int levelNumber)
     {
-        for(int i = 0; i < 2; i++) {
+        Boolean finishCycle = false;
+        while(!finishCycle) {
             switch(levelNumber) 
             {
                 case 1:
                     ChangeColorToBlue();
                     openTimer = timer;
+                    nextHit = "open";
                     yield return new WaitForSeconds((float) 0.17);
                     ChangeColorToGray();
 
@@ -135,6 +138,7 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
 
                     ChangeColorToYellow();
                     openTimer = timer;
+                    nextHit = "closed";
                     yield return new WaitForSeconds((float) 0.17);
                     ChangeColorToGray();
 
@@ -142,261 +146,273 @@ public class PlayAudioOnTriggerEnter : MonoBehaviour
                     break;
 
                 case 2:
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.17);
-                    ChangeColorToGray();
+                for (int i = 0; i< 2; i++) {
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.17);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.17);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.17);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.17);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.17);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.17);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.17);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.17);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.17);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 1.7);
-                    break;
+                        yield return new WaitForSeconds((float) 1.7);
+                }
+                finishCycle = true;
+                break;
 
                 case 3:
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                    for (int i = 0; i< 2; i++) {
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.33);
+                        yield return new WaitForSeconds((float) 0.33);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.75);
+                        yield return new WaitForSeconds((float) 0.75);
+                    }
+                    finishCycle = true;
                     break;
 
                 case 4:
-                //Primeiro Compasso
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                    for (int i = 0; i< 2; i++) {
+                        //Primeiro Compasso
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                //Segundo Compasso
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                    //Segundo Compasso
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 1.7);
+                        yield return new WaitForSeconds((float) 1.7);
+                    }
+                    finishCycle = true;
                     break;
 
                 case 5:
-                //Primeiro Compasso
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                    for (int i = 0; i< 2; i++) {
+                        //Primeiro Compasso
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                //Segundo Compasso
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        //Segundo Compasso
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToBlue();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToBlue();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
 
-                    ChangeColorToYellow();
-                    yield return new WaitForSeconds((float) 0.16);
-                    ChangeColorToGray();
+                        ChangeColorToYellow();
+                        yield return new WaitForSeconds((float) 0.16);
+                        ChangeColorToGray();
 
-                    yield return new WaitForSeconds((float) 0.31);
+                        yield return new WaitForSeconds((float) 0.31);
+                    }
+                    finishCycle = true;
                     break;
             }   
         }
