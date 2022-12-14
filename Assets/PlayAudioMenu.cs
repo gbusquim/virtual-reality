@@ -20,7 +20,7 @@ public class PlayAudioMenu : MonoBehaviour
     PlayAudioOnTriggerEnter musicInstrument;
 
     public void PlayAudio() {
-        musicInstrument = GameObject.Find("testeCylinder").GetComponent<PlayAudioOnTriggerEnter>();
+        musicInstrument = GameObject.Find("Tamborim").GetComponent<PlayAudioOnTriggerEnter>();
         source = GetComponent<AudioSource>();
 
         if (source.loop == false) {
